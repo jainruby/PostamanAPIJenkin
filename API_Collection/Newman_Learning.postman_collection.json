@@ -10,43 +10,14 @@
 			"name": "Newman",
 			"item": [
 				{
-					"name": "Fetched created user Newman",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{AuthToken}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://{{domain}}/public/v2/users/7551518",
-							"protocol": "https",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"public",
-								"v2",
-								"users",
-								"7551518"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "201- Create User Newman",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"var responseObject = pm.response.json();\r",
+									"pm.collectionVariables.set(\"responseId\", responseObject.id);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -113,6 +84,36 @@
 					"response": []
 				},
 				{
+					"name": "Fetched created user Newman",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{domain}}/public/v2/users/{{responseId}}",
+							"protocol": "https",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{responseId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update user Newman",
 					"request": {
 						"auth": {
@@ -128,7 +129,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 7551518,\r\n        \"name\": \"RubyNEWJain\",\r\n        \"email\": \"test1@Newman.test\",\r\n        \"gender\": \"female\",\r\n        \"status\": \"inactive\"\r\n    }",
+							"raw": "{\r\n        \"id\": {{responseId}},\r\n        \"name\": \"{{name}}\",\r\n        \"email\": \"{{email}}\",\r\n        \"gender\": \"female\",\r\n        \"status\": \"active\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,7 +137,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{domain}}/public/v2/users/7551518",
+							"raw": "https://{{domain}}/public/v2/users/{{responseId}}",
 							"protocol": "https",
 							"host": [
 								"{{domain}}"
@@ -145,7 +146,7 @@
 								"public",
 								"v2",
 								"users",
-								"7551518"
+								"{{responseId}}"
 							]
 						}
 					},
@@ -247,6 +248,10 @@
 		},
 		{
 			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "responseId",
 			"value": ""
 		}
 	]
