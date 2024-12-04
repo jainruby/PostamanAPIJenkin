@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "0dafea9e-174f-41a4-9709-d292c5674550",
+		"name": "Newman_Learning",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14801286"
+	},
+	"item": [
+		{
+			"name": "Newman",
+			"item": [
+				{
+					"name": "Fetched created user Newman",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{domain}}/public/v2/users/7551518",
+							"protocol": "https",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7551518"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "201- Create User Newman",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var random = Math.floor(Math.random() *100);\r",
+									"//pm.environment.unset(\"name\"); \r",
+									"//pm.globals.unset(\"name\");\r",
+									"//pm.collectionVariables.unset(\"name\");\r",
+									"\r",
+									"pm.collectionVariables.set(\"name\", \"Ruby\" + random);\r",
+									"pm.collectionVariables.set(\"email\", \"Ruby.jain\" +random+\"@yopmail.com\");\r",
+									"\r",
+									"pm.collectionVariables.get(\"name\");\r",
+									"console.log(pm.collectionVariables.get(\"name\"));\r",
+									"//pm.print(pm.collectionVariables.get(\"name\"));\r",
+									"//pm.sendRequest(pm.collectionVariables.get(\"name\"));\r",
+									"//pm.collectionVariables.clear();\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n  {\r\n     \"name\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"gender\": \"female\",\r\n    \"status\": \"inactive\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{domain}}/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user Newman",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 7551518,\r\n        \"name\": \"RubyNEWJain\",\r\n        \"email\": \"test1@Newman.test\",\r\n        \"gender\": \"female\",\r\n        \"status\": \"inactive\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{domain}}/public/v2/users/7551518",
+							"protocol": "https",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7551518"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200-Fetched All user Newman",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"APIVersion\", \"v2\");\r",
+									"console.log (\"Global variable:\" + pm.globals.get(\"APIVersion\"));\r",
+									"\r",
+									"pm.environment.set(\"environmentBaseURL\", \"http://baseURL\");\r",
+									"console.info(\"environment variable: \"+pm.environment.get(\"environmentBaseURL\"));\r",
+									"\r",
+									"pm.variables.set(\"localVariable\", \"This is alocal variable\");\r",
+									"console.log(pm.variables.get(\"localVariable\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{domain}}/public/v2/users/",
+							"protocol": "https",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "AuthToken",
+			"value": "Bearer 5efa72b20c4e981f40848feeb726f761a36f3b6f82acec3dde012ad03e95bdb3",
+			"type": "string"
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		}
+	]
+}
